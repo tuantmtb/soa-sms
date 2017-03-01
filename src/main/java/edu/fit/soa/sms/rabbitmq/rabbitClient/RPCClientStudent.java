@@ -1,6 +1,10 @@
 package edu.fit.soa.sms.rabbitmq.rabbitClient;
 
 import edu.fit.soa.sms.domain.Student;
+import edu.fit.soa.sms.rabbitmq.rabbitClient.service.RPCClientStudentCreate;
+import edu.fit.soa.sms.rabbitmq.rabbitClient.service.RPCClientStudentDelete;
+import edu.fit.soa.sms.rabbitmq.rabbitClient.service.RPCClientStudentFindOne;
+import edu.fit.soa.sms.rabbitmq.rabbitClient.service.RPCClientStudentGetAll;
 
 import java.util.List;
 

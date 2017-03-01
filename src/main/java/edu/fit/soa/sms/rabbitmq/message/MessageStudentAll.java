@@ -11,7 +11,6 @@ import java.util.List;
 public class MessageStudentAll implements Serializable {
     List<Student> lstStudent;
 
-
     public List<Student> getLstStudent() {
         return lstStudent;
     }
