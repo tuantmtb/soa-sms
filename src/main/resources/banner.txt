@@ -1,0 +1,8 @@
+${AnsiColor.RED} .dP"Y8  dP"Yb     db             ${AnsiColor.GREEN} .dP"Y8 8b    d8 .dP"Y8
+${AnsiColor.RED} `Ybo." dP   Yb   dPYb   ________ ${AnsiColor.GREEN} `Ybo." 88b  d88 `Ybo."
+${AnsiColor.RED} o.`Y8b Yb   dP  dP__Yb  """""""" ${AnsiColor.GREEN} o.`Y8b 88YbdP88 o.`Y8b
+${AnsiColor.RED} 8bodP'  YbodP  dP""""Yb          ${AnsiColor.GREEN} 8bodP' 88 YY 88 8bodP'
+
+${AnsiColor.BRIGHT_BLUE}:: System Management Student🤓  :: Running Spring Boot ${spring-boot.version} ::
+
+

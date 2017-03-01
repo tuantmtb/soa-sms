@@ -1,24 +1,62 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 
-
-<head>
-
+<head th:include="partial/header :: headTag (title = 'Trang chủ')">
 </head>
-
 <body>
 <div class="body">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{'/'}">Quản lý tài khoản sinh viên</a>
+            </div>
 
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-right" role="search" method="GET" th:action="@{'/search'}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" th:name="name" placeholder="Nhập tên sinh viên"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </nav>
 
     <div role="main" class="main">
-
         <section class="page-header">
             <div class="container">
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Trang chủ</h1>
+                        <h1 th:text="${description}"></h1>
                     </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover table-bordered table-responsive ">
+                        <thead>
+                        <tr class="active">
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Mã sinh viên</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="student, idx : ${students}">
+                            <td th:text="${idx.index+1}"></td>
+                            <td th:text="${student.name}"></td>
+                            <td th:text="${student.code}"></td>
+                            <td th:text="${student.email}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

@@ -66,4 +66,9 @@ public class StudentServiceImpl implements StudentService {
     public Student getOne(Long id) {
         return studentDao.getOne(id);
     }
+
+    @Override
+    public List<Student> findByNameContaining(String name) {
+        return studentDao.findByNameContaining(name);
+    }
 }
