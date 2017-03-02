@@ -53,12 +53,19 @@ public class RPCServerStudentCreate {
                             .correlationId(properties.getCorrelationId())
                             .build();
 
-                    Student student = SerializationUtils.deserialize(body);
-                    Student studentCreated = studentService.save(student);
-                    byte[] response = SerializationUtils.serialize(studentCreated);
+                    log.info("Have a request:");
+//                    String recive = SerializationUtils.deserialize(body);
+//                    log.info("Have a request:" + recive);
+                    String request = SerializationUtils.deserialize(body);
+                    List<String> items = Arrays.asList(request.split("\\s*###\\s*"));
 
+                    Student studentRequest = new Student(items.get(0), items.get(1), items.get(2));
+                    Student studentCreated = studentService.save(studentRequest);
+                    byte[] response = SerializationUtils.serialize(studentCreated);
+                    log.info("sending response: {}", studentCreated);
                     // send response
                     channel.basicPublish("", properties.getReplyTo(), replyProps, response);
+//                    channel.basicPublish("", properties.getReplyTo(), replyProps, null);
                     channel.basicAck(envelope.getDeliveryTag(), false);
 
                 }

@@ -35,10 +35,13 @@ public class Student implements Serializable {
         this.code = code;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
+
+
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hashCode(id);
+//    }
 
     @Override
     public String toString() {

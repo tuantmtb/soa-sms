@@ -48,16 +48,16 @@ public class RPCClientStudentCreate {
      * @throws Exception
      */
     public Student create(Student student) throws Exception {
-        String corrId = UUID.randomUUID().toString();
+        final String corrId = UUID.randomUUID().toString();
 
         AMQP.BasicProperties props = new AMQP.BasicProperties
                 .Builder()
                 .correlationId(corrId)
                 .replyTo(replyQueueName)
                 .build();
+        String requestStudent = student.getName() + "###" + student.getEmail() + "###" + student.getCode();
 
-
-        channel.basicPublish("", REQUEST_QUEUE_RPC_SMS_CREATE, props, SerializationUtils.serialize(student));
+        channel.basicPublish("", REQUEST_QUEUE_RPC_SMS_CREATE, props, SerializationUtils.serialize(requestStudent));
 
         final BlockingQueue<Student> response = new ArrayBlockingQueue<Student>(1);
 
@@ -66,7 +66,10 @@ public class RPCClientStudentCreate {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
                 if (properties.getCorrelationId().equals(corrId)) {
                     try {
+
+                        System.out.println("recieve student response: ");
                         Student studentResponse = SerializationUtils.deserialize(body);
+                        System.out.println("recieve student response: " + studentResponse);
                         response.offer(studentResponse);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -86,10 +89,12 @@ public class RPCClientStudentCreate {
 
     // test mode
     public static void main(String[] args) throws Exception {
+
+
         RPCClientStudentCreate rpcStudentGetAll = new RPCClientStudentCreate();
 
         System.out.println("Requesting");
-        Student student = new Student("Trần Minh Tuấn", "tuantmtb@gmail.com", "14020520");
+        Student student = new Student("Tran Minh Tuan", "tuantmtb@gmail.com", "14020520");
 
         Student response = rpcStudentGetAll.create(student);
 
