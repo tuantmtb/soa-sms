@@ -74,6 +74,11 @@
             <artifactId>nekohtml</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>4.1.0</version>
+        </dependency>
         <!--<dependency>-->
         <!--<groupId>org.apache.activemq</groupId>-->
         <!--<artifactId>activemq-broker</artifactId>-->
