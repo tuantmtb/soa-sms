@@ -50,6 +50,7 @@ public class RPCServerStudentDelete {
                     AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                             .Builder()
                             .correlationId(properties.getCorrelationId())
+                            .contentEncoding("UTF-8")
                             .build();
 
                     long student_id = SerializationUtils.deserialize(body);

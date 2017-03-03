@@ -51,6 +51,7 @@ public class RPCServerStudentGetAll {
                     AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                             .Builder()
                             .correlationId(properties.getCorrelationId())
+                            .contentEncoding("UTF-8")
                             .build();
 
                     List<Student> lstStudent = studentService.findAll();

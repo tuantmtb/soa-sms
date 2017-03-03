@@ -1,10 +1,12 @@
 package edu.fit.soa.sms;
 
 
+import edu.fit.soa.sms.domain.Student;
 import edu.fit.soa.sms.rabbitmq.rabbitServer.RPCServerStudentCreate;
 import edu.fit.soa.sms.rabbitmq.rabbitServer.RPCServerStudentDelete;
 import edu.fit.soa.sms.rabbitmq.rabbitServer.RPCServerStudentFindOne;
 import edu.fit.soa.sms.rabbitmq.rabbitServer.RPCServerStudentGetAll;
+import edu.fit.soa.sms.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -37,6 +39,9 @@ public class SystemManagementStudentServerApplication {
     @Autowired
     RPCServerStudentFindOne rpcServerStudentFindOne;
 
+    @Autowired
+    StudentService studentService;
+
     @PostConstruct
     public void subcriberStudent() {
 
@@ -46,7 +51,6 @@ public class SystemManagementStudentServerApplication {
             rpcServerStudentCreate.subcriber();
             rpcServerStudentDelete.subcriber();
             rpcServerStudentFindOne.subcriber();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,7 +60,5 @@ public class SystemManagementStudentServerApplication {
     public static void main(String[] args) throws Exception {
         // Launch the application
         ConfigurableApplicationContext context = SpringApplication.run(SystemManagementStudentServerApplication.class, args);
-
-
     }
 }

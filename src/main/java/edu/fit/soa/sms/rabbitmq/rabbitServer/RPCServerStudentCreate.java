@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,12 +52,14 @@ public class RPCServerStudentCreate {
                     AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                             .Builder()
                             .correlationId(properties.getCorrelationId())
+                            .contentEncoding("UTF-8")
                             .build();
 
                     log.info("Have a request:");
 //                    String recive = SerializationUtils.deserialize(body);
 //                    log.info("Have a request:" + recive);
-                    String request = SerializationUtils.deserialize(body);
+//                    String request = SerializationUtils.deserialize(body);
+                    String request = new String(body, StandardCharsets.UTF_8);
                     List<String> items = Arrays.asList(request.split("\\s*###\\s*"));
 
                     Student studentRequest = new Student(items.get(0), items.get(1), items.get(2));
