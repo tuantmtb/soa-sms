@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 /**
@@ -48,6 +49,22 @@ public class HomeController {
         modelMap.put("students", students);
 
         return new ModelAndView("home", modelMap);
+    }
+
+    @RequestMapping(value = "/student/{id}")
+    public ModelAndView detail(ModelMap modelMap, @PathVariable("id") long id) {
+
+
+        try {
+            Student student = studentService.getOne(id);
+            logger.debug("student: {}", student);
+            modelMap.put("description", "Sinh viên " + student.getName());
+            modelMap.put("student", student);
+        } catch (Exception e) {
+            modelMap.put("description", "Không tìm thấy sinh viên");
+        }
+
+        return new ModelAndView("student", modelMap);
     }
 
 }

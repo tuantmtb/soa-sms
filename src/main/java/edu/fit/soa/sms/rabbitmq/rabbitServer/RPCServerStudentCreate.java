@@ -62,7 +62,8 @@ public class RPCServerStudentCreate {
                     String request = new String(body, StandardCharsets.UTF_8);
                     List<String> items = Arrays.asList(request.split("\\s*###\\s*"));
 
-                    Student studentRequest = new Student(items.get(0), items.get(1), items.get(2));
+                    Student studentRequest = new Student(items.get(0), items.get(1),
+                            items.get(2), items.get(3), items.get(4), items.get(5), items.get(6));
                     Student studentCreated = studentService.save(studentRequest);
                     byte[] response = SerializationUtils.serialize(studentCreated);
                     log.info("sending response: {}", studentCreated);

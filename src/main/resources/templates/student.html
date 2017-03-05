@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="partial/header :: headTag (title = 'Trang chủ')">
+<head th:include="partial/header :: headTag (title = 'Sinh viên')">
 </head>
 <body>
 <div class="body">
@@ -39,26 +39,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table table-hover table-bordered table-responsive ">
+                    <table th:if="${student}" class="table table-hover table-bordered table-responsive ">
                         <thead>
-                        <tr class="active">
-                            <th>STT</th>
-                            <th>Họ tên</th>
-                            <th>Mã sinh viên</th>
-                            <th>Email</th>
-                        </tr>
+
                         </thead>
                         <tbody>
-                        <tr th:each="student, idx : ${students}">
-                            <td th:text="${idx.index+1}"></td>
-                            <td>
-                                <a th:href="@{'/student/'} + ${student.id}">
-                                    <div th:text="${student.name}"></div>
-                                </a>
-
-                            </td>
+                        <tr>
+                            <td>Họ và tên</td>
+                            <td th:text="${student.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Mã sinh viên</td>
                             <td th:text="${student.code}"></td>
+                        </tr>
+                        <tr>
+                            <td>Lớp</td>
+                            <td th:text="${student.clazz}"></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại</td>
+                            <td th:text="${student.phone}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
                             <td th:text="${student.email}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày tháng năm sinh</td>
+                            <td th:text="${student.dob}"></td>
+                        </tr>
+                        <tr>
+                            <td>Quê quán</td>
+                            <td th:text="${student.location}"></td>
                         </tr>
                         </tbody>
                     </table>

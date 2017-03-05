@@ -25,6 +25,18 @@ public class Student implements Serializable {
     @Column(name = "code")
     private String code;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "dob")
+    private String dob;
+
+    @Column(name = "clazz")
+    private String clazz;
+
 
     public Student() {
     }
@@ -35,13 +47,15 @@ public class Student implements Serializable {
         this.code = code;
     }
 
-
-
-
-//    @Override
-//    public int hashCode() {
-//        return Objects.hashCode(id);
-//    }
+    public Student(String name, String email, String code, String phone, String location, String dob, String clazz) {
+        this.name = name;
+        this.email = email;
+        this.code = code;
+        this.phone = phone;
+        this.location = location;
+        this.dob = dob;
+        this.clazz = clazz;
+    }
 
     @Override
     public String toString() {
@@ -50,6 +64,10 @@ public class Student implements Serializable {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", code='" + code + '\'' +
+                ", phone='" + phone + '\'' +
+                ", location='" + location + '\'' +
+                ", dob='" + dob + '\'' +
+                ", clazz='" + clazz + '\'' +
                 '}';
     }
 
@@ -83,5 +101,38 @@ public class Student implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
     }
 }
